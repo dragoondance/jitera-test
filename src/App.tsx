@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import './App.css';
 import { ContainerWrapper } from './component/Container/ContainerStyle';
 import { UserCard } from './component/UserCard/UserCard';
 
