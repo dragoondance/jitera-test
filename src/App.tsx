@@ -1,24 +1,51 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useState, useEffect, useCallback } from 'react';
 import './App.css';
+import { ContainerWrapper } from './component/Container/ContainerStyle';
+import { UserCard } from './component/UserCard/UserCard';
 
-function App() {
+const App = () => {
+  const [users, setUsers] = useState<any[]>([])
+
+  const fetchUser = useCallback(async() => {
+    const response = await fetch(
+      "https://jsonplaceholder.typicode.com/users"
+    ).then((response) => response.json());
+    const mappedData = response.map((user: any) => ({
+      ...user,
+      isFav: false,
+      isDeleted: false,
+    }))
+    setUsers(mappedData);
+  }, [])
+
+  const setUser = (user: any) => {
+    const newUsers = users.map((tempUser: any) => {
+      if (user.id === tempUser.id) {
+        return user
+      } else {
+        return tempUser
+      }
+    })
+    setUsers(newUsers)
+  }
+
+  useEffect(() => {
+    fetchUser()
+  }, [fetchUser])
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <ContainerWrapper>
+        {
+          users && users.length > 0 && users.map((user: any) => {
+            if (!user.isDeleted) {
+              return (
+                <UserCard setUser={setUser} user={user} />
+              )
+            }
+          })
+        }
+      </ContainerWrapper>
     </div>
   );
 }
