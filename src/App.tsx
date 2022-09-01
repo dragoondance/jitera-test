@@ -41,6 +41,8 @@ const App = () => {
               return (
                 <UserCard setUser={setUser} user={user} />
               )
+            } else {
+              return null
             }
           })
         }
