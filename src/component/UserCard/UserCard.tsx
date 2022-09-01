@@ -40,7 +40,7 @@ const UserCard: React.FC<UserCardProps> = ({
     const [modalDeleteOpen, setModalDeleteOpen] = useState<boolean>(false)
 
     const getImageUrl = (username: String) => {
-        return `https://avatars.dicebear.com/v2/avataaars/{{${username}}}.svg?options[mood][]=happyhttps://avatars.dicebear.com/v2/avataaars/{{${username}}}.svg?options[mood][]=happy}`
+        return `https://avatars.dicebear.com/v2/avataaars/${username}.svg?options[mood][]=happyhttps://avatars.dicebear.com/v2/avataaars/{{${username}}}.svg?options[mood][]=happy}`
     }
 
     return (
