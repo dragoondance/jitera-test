@@ -2,12 +2,11 @@ import styled from 'styled-components'
 
 const Card = styled.div`
     position: relative;
-    flex: 0 1 22.5%;
-    max-height: 50%;
+    width: 22.5%;
     margin: 1%;
     background-color: #F5F5F5;
     border: 1px solid #FDFDFD;
-    @media only screen and (max-width: 480px) {
+    @media only screen and (max-width: 640px) {
         flex: 0 1 100%;
         max-height: 100%;
     }
@@ -34,6 +33,7 @@ const DescWrapper = styled.div`
     display: flex;
     flex-direction: row;
     align-items: center;
+    min-height: 1.5rem;
     justify-content: flex-start;
     text-align: left;
     margin-top: 0.5rem;
